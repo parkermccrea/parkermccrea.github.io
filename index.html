@@ -2557,7 +2557,7 @@
          role="link"
          data-category="web business"
          data-project="study-hub"
-         data-url="https://YOUR-STUDY-HUB-LINK.com"
+         data-url="https://futureleadersstudyhub.com"
          aria-label="Open the Business Leaders Study Hub project">
                         <span class="project-arrow" aria-hidden="true">↗</span>
                         <div class="project-visual has-image">
@@ -2997,30 +2997,6 @@
                 });
             });
 
-            // Project modal data.
-            const projectData = {
-                'lost-found': {
-                    mark: 'LF', kicker: 'Award-winning full-stack platform', title: 'Waukee Lost & Found',
-                    description: 'A real-world school operations platform designed to make reporting, searching, matching, claiming, and managing lost items dramatically easier.',
-                    points: ['Secure PHP and PDO database workflows', 'Image upload, crop, validation, and moderation', 'Automated matching using dates, locations, and keywords', 'Administrator approval, claim review, search, and analytics', 'Placed 6th nationally at FBLA NLC 2026']
-                },
-                'study-hub': {
-                    mark: 'BL', kicker: 'Education and competition platform', title: 'Business Leaders Study Hub',
-                    description: 'A centralized place for students to explore competitive events, find the right fit, access resources, and prepare more efficiently.',
-                    points: ['Database of dozens of competitive events', 'Advanced filters, sorting, and AJAX search', 'Personalized event-finder questionnaire', 'Resource organization and admin controls', 'Designed as a scalable public platform']
-                },
-                'pull-lane': {
-                    mark: 'PL', kicker: 'Event-management product concept', title: 'Pull Lane',
-                    description: 'A niche SaaS concept for tractor-pull organizers who need a cleaner way to handle schedules, drivers, tractors, classes, scoring, and event communication.',
-                    points: ['Purpose-built for tractor-pull operations', 'Participant, class, and event management', 'Scoring and result presentation concepts', 'Professional public-facing promotion', 'Expandable into a subscription platform']
-                },
-                'photo-platform': {
-                    mark: 'IA', kicker: 'Sports technology and marketplace concept', title: 'Iowa Sports Photographer Scheduler',
-                    description: 'A platform concept that helps photographers discover and claim high-school sporting events while schools and coaches manage accurate schedules.',
-                    points: ['Browse by sport, season, class, school, and team level', 'Game-level photographer signups and visibility', 'Schedule imports plus coach/admin editing', 'Statewide sports-data structure', 'Designed to solve a real coordination problem']
-                }
-            };
-
             const modal = document.getElementById('projectModal');
             const modalClose = document.getElementById('modalClose');
             const modalCloseSecondary = document.getElementById('modalCloseSecondary');
@@ -3053,12 +3029,23 @@
                 if (lastFocused) lastFocused.focus();
             };
 
+            const openProjectLink = card => {
+                const url = card.dataset.url;
+            
+                if (!url) return;
+            
+                window.open(url, '_blank', 'noopener,noreferrer');
+            };
+            
             projectCards.forEach(card => {
-                card.addEventListener('click', () => openModal(card.dataset.project));
+                card.addEventListener('click', () => {
+                    openProjectLink(card);
+                });
+            
                 card.addEventListener('keydown', event => {
                     if (event.key === 'Enter' || event.key === ' ') {
                         event.preventDefault();
-                        openModal(card.dataset.project);
+                        openProjectLink(card);
                     }
                 });
             });
